@@ -5,8 +5,12 @@
     <!-- header -->
     <app-header />
     <Menubar :model="items" class="menuBar" />
-    <!-- color mixin -->
-    <color-mixin />
+    <router-link to="/">Home</router-link>
+    <router-link to="/mixin">Mixin</router-link>
+    <router-link to="/about">About</router-link>
+
+    <!-- router view -->
+    <router-view />
 
   </div>
 </div>
@@ -15,7 +19,6 @@
 <script>
 import './styles/global.scss'
 import AppHeader from './components/AppHeader'
-import ColorMixin from './components/ColorMixin'
 import Menubar from 'primevue/menubar';
 
 export default {
@@ -23,15 +26,26 @@ export default {
   data() {
     return {
       items: [
-        { label: 'Home', icon: 'pi pi-fw pi-home' },
-        { label: 'Contact', icon: 'pi pi-fw pi-envelope' },
-        { label: 'About', icon: 'pi pi-fw pi-info' }
+        {
+          label: 'Home',
+          icon: 'pi pi-fw pi-home',
+          to: '/'
+        },
+        {
+          label: 'Mixin',
+          icon: 'pi pi-fw pi-filter',
+          to: '/mixin'
+        },
+        {
+          label: 'About',
+          icon: 'pi pi-fw pi-info',
+          to: '/about'
+        }
       ]
-    };
+    }
   },
   components: {
     AppHeader,
-    ColorMixin,
     Menubar
   }
 }
