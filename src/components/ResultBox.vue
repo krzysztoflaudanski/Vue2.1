@@ -10,7 +10,7 @@
     :style="{ margin: '3rem auto' }" />
 
   <!-- refresh btn -->
-  <button-item @click="$emit('refresh')" :size="4" :font-size="1.5" icon="fa-sync" />
+  <button-item @click="$emit('refresh')" :size="4" :font-size="1.5" icon="pi-refresh" />
   <button-item @click="showModal" :size="4" :font-size="1.5" :style="{ marginLeft: '20px' }" :movement="-0.5">
     ?</button-item>
   <modal-item v-if="modalVisible"  @cancel="hideModal">
@@ -22,7 +22,7 @@
         <p>Mix three colors to create the perfect one!</p>
       </template>
       <template v-slot:footer>
-      <button-item icon="fa-thumbs-up"/>
+      <button-item icon="pi-thumbs-up-fill" :movement="0"/>
       </template></modal-item>
 </div>
 </template>

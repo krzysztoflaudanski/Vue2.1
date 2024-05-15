@@ -14,7 +14,7 @@
 
         <footer class="modal__footer">
             <slot name="footer" />
-            <button-item icon="fa-times" @click="$emit('cancel')" />
+            <button-item icon="pi-times" @click="$emit('cancel')" :movement="0" :style="{ marginLeft: '20px'}"/>
         </footer>
     </div>
 </div>
