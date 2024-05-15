@@ -5,21 +5,42 @@
   <p v-text="'And the result...'" />
 
   <!-- mixture effect -->
-  {{ console.log(mixtureEffectFill) }}
-  <flask-item :buttonsVisible=false :amount=100 :size="15" :color="mixtureEffectFill" :style="{ margin: '3rem auto' }" />
+ 
+  <flask-item :buttonsVisible=false :amount=100 :size="15" :color="mixtureEffectFill"
+    :style="{ margin: '3rem auto' }" />
 
   <!-- refresh btn -->
-  <button-item @click="$emit('refresh')" :size="4" :movement="-0.5" :font-size="1.5" icon="sync" />
-
+  <button-item @click="$emit('refresh')" :size="4" :font-size="1.5" icon="fa-sync" />
+  <button-item @click="showModal" :size="4" :font-size="1.5" :style="{ marginLeft: '20px' }" :movement="-0.5">
+    ?</button-item>
+  <modal-item v-if="modalVisible"  @cancel="hideModal">
+  <!-- Content of the modal -->
+  <template v-slot:header>
+        <h3>About the app</h3>
+      </template>
+      <template v-slot:body>
+        <p>Mix three colors to create the perfect one!</p>
+      </template>
+      <template v-slot:footer>
+      <button-item icon="fa-thumbs-up"/>
+      </template></modal-item>
 </div>
 </template>
 
 <script>
 import FlaskItem from './shared/FlaskItem.vue';
 import ButtonItem from './shared/ButtonItem.vue';
+import ModalItem from './shared/ModalItem.vue';
+import modalMixin from './../mixins/ModalMixin.js'
 
 export default {
   name: 'ResultsBox',
+  data() {
+    return {
+      modalVisible: false
+    };
+  },
+  mixins: [modalMixin],
   props: {
     mixtures: {
       type: Array,
@@ -34,8 +55,9 @@ export default {
   },
   components: {
     ButtonItem,
-    FlaskItem
+    FlaskItem,
+    ModalItem
 
-  }
+  },
 }
 </script>

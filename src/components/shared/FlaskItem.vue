@@ -58,13 +58,13 @@ export default {
 <div class="flask" :style="flaskStyle">
 
     <!-- decrement btn -->
-    <button-item v-if="buttonsVisible" class="flask__btn flask__btn--left" icon="arrow-down"
+    <button-item v-if="buttonsVisible" class="flask__btn flask__btn--left" icon="fa-arrow-down"
         @click="$emit('decrement')" />
 
     <div :class="fillClasses" :style="fillStyle" />
 
     <!-- increment btn -->
-    <button-item v-if="buttonsVisible" class="flask__btn flask__btn--right" icon="arrow-up" :movement="-0.5"
+    <button-item v-if="buttonsVisible" class="flask__btn flask__btn--right" icon="fa-arrow-up" :movement="-0.5"
         @click="$emit('increment')" />
 </div>
 </template>
