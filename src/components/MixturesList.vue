@@ -1,17 +1,12 @@
-<template>
-  <!-- mixtures -->
-  <ul class="mixtures">
-    <mixture-item
-      :key="index"
-      v-for="(mixture, index) in mixtures"
-      :mixture="mixture"
-      @increment="$emit('increment', index)"
-      @decrement="$emit('decrement', index)" />
-  </ul>
+<template><!-- mixtures -->
+<ul class="mixtures">
+  <flask-item :key="index" v-for="(mixture, index) in mixtures" :variant="mixture.variant" :amount="mixture.amount"
+    @increment="$emit('increment', index)" @decrement="$emit('decrement', index)" />
+</ul>
 </template>
 
 <script>
-import MixtureItem from './MixtureItem'
+import FlaskItem from './shared/FlaskItem'
 
 export default {
   name: 'Mixtures',
@@ -21,7 +16,9 @@ export default {
       required: true
     }
   },
-  components: { MixtureItem }
+  components: {
+    FlaskItem
+  }
 }
 </script>
 

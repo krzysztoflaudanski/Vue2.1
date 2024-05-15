@@ -1,4 +1,5 @@
 <script>
+import ButtonItem from './ButtonItem.vue';
 export default {
     name: 'FlaskItem',
     props: {
@@ -45,6 +46,9 @@ export default {
 
             return style
         }
+    },
+    components: {
+        ButtonItem
     }
 
 }
