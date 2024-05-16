@@ -1,9 +1,7 @@
 <template>
-  <header>
-    <h1
-      class="heading"
-      v-text="'RGB Color Mixture'" />
-  </header>
+<header>
+  <h1 class="heading" v-text="'RGB Color Mixture'" />
+</header>
 </template>
 
 <script>

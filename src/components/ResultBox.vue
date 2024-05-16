@@ -10,12 +10,21 @@
     :style="{ margin: '3rem auto' }" />
   <p>{{ mixtureEffectFill }}</p>
   <!-- refresh btn -->
-  <button-item @click="$emit('refresh')" :size="4" :font-size="1.5" icon="pi-refresh" />
-  <button-item @click="showModal" :size="4" :font-size="1.5" :style="{ marginLeft: '20px' }" :movement="-0.5">
-    ?</button-item>
-  <router-link :to="{ path: linkShared }">
-    <button-item :size="4" :font-size="1.5" icon="pi-share-alt" :style="{ marginLeft: '20px' }" />
-  </router-link>
+  <div style="display: flex; align-items: center; justify-content: center;">
+    <div>
+      <button-item @click="$emit('refresh')" :size="4" :font-size="1.5" icon="pi-refresh" :movement="-0.5" />
+    </div>
+    <div style="margin-left: 20px;">
+      <button-item @click="showModal" :size="4" :font-size="1.5" :movement="-0.5">
+        ?
+      </button-item>
+    </div>
+    <div style="margin-left: 20px;">
+      <router-link :to="{ path: linkShared }">
+        <button-item :size="4" :font-size="1.5" icon="pi-share-alt" :movement="-0.5" />
+      </router-link>
+    </div>
+  </div>
   <fade-animation>
     <modal-item v-if="modalVisible" @cancel="hideModal">
       <!-- Content of the modal -->

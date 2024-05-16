@@ -1,18 +1,13 @@
 <template>
-  <div>
+<div>
 
-    <!-- mixtures list -->
-    <mixtures-list
-      :mixtures="mixtures"
-      @increment="increment"
-      @decrement="decrement" />
+  <!-- mixtures list -->
+  <mixtures-list :mixtures="mixtures" @increment="increment" @decrement="decrement" />
 
-    <!-- result box -->
-    <result-box
-      @refresh="refresh"
-      :mixtures="mixtures" />
+  <!-- result box -->
+  <result-box @refresh="refresh" :mixtures="mixtures" />
 
-  </div>
+</div>
 </template>
 
 <script>
@@ -37,19 +32,19 @@ export default {
       }]
   }),
   methods: {
-    increment (index) {
+    increment(index) {
       const mixture = this.mixtures[index]
       if (mixture.amount === 100) return false
       mixture.amount++
     },
 
-    decrement (index) {
+    decrement(index) {
       const mixture = this.mixtures[index]
       if (mixture.amount === 0) return false
       mixture.amount--
     },
 
-    refresh () {
+    refresh() {
       this.mixtures = this.mixtures.map(item => ({ ...item, amount: 50 }))
     }
   },
