@@ -4,10 +4,19 @@
 
     <!-- header -->
     <app-header />
-    <Menubar :model="items" class="menuBar" />
+    < <Menubar :model="items" class="menuBar">
+      <template #item="{ item, props }">
+        <router-link v-slot="{ href, navigate }" :to="item.to" custom>
+          <a v-ripple :href="href" v-bind="props.action" @click="navigate">
+            <span :class="item.icon" />
+            <span class="ml-2">{{ item.label }}</span>
+          </a>
+        </router-link>
+      </template>
+      </Menubar>
 
-    <!-- router view -->
-    <router-view />
+      <!-- router view -->
+      <router-view />
 
   </div>
 </div>
@@ -26,17 +35,20 @@ export default {
         {
           label: 'Home',
           icon: 'pi pi-fw pi-home',
-          command: () => { this.$router.push('/') }
+          // command: () => { this.$router.push('/') }
+          to: "/"
         },
         {
           label: 'Mixin',
           icon: 'pi pi-fw pi-filter',
-          command: () => { this.$router.push('/mixin') }
+          to: "/Mixin"
+          // command: () => { this.$router.push('/mixin') }
         },
         {
           label: 'About',
           icon: 'pi pi-fw pi-info',
-          command: () => { this.$router.push('/about') }
+          to: "/About"
+          // command: () => { this.$router.push('/about') }
         }
       ]
     }
