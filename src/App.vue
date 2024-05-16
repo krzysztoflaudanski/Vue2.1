@@ -5,9 +5,6 @@
     <!-- header -->
     <app-header />
     <Menubar :model="items" class="menuBar" />
-    <router-link to="/">Home</router-link>
-    <router-link to="/mixin">Mixin</router-link>
-    <router-link to="/about">About</router-link>
 
     <!-- router view -->
     <router-view />
@@ -29,17 +26,17 @@ export default {
         {
           label: 'Home',
           icon: 'pi pi-fw pi-home',
-          to: '/'
+          command: () => { this.$router.push('/') }
         },
         {
           label: 'Mixin',
           icon: 'pi pi-fw pi-filter',
-          to: '/mixin'
+          command: () => { this.$router.push('/mixin') }
         },
         {
           label: 'About',
           icon: 'pi pi-fw pi-info',
-          to: '/about'
+          command: () => { this.$router.push('/about') }
         }
       ]
     }

@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory} from 'vue-router'
 import Home from '@/pages/HomePage.vue'
 import About from '@/pages/AboutPage.vue'
 import Mixin from '@/pages/MixinPage.vue'
