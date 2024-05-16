@@ -2,6 +2,11 @@
 import ButtonItem from './ButtonItem.vue';
 export default {
     name: 'FlaskItem',
+    data() {
+        return {
+            isAnimated: false
+        }
+    },
     props: {
         size: {
             type: Number,
@@ -49,23 +54,28 @@ export default {
     },
     components: {
         ButtonItem
-    }
+    },
+    methods: {
+        animation() {
+            this.isAnimated = true
 
+        }
+    }
 }
 </script>
 
 <template>
-<div class="flask" :style="flaskStyle">
-
+<div class="flask animate__animated" :class="isAnimated && 'animate__shakeY'" :style="flaskStyle"
+    @animationend="isAnimated = false">
     <!-- decrement btn -->
     <button-item v-if="buttonsVisible" class="flask__btn flask__btn--left" icon="pi-arrow-down"
-        @click="$emit('decrement')" />
+        @click="$emit('decrement'); animation()" />
 
     <div :class="fillClasses" :style="fillStyle" />
 
     <!-- increment btn -->
     <button-item v-if="buttonsVisible" class="flask__btn flask__btn--right" icon="pi-arrow-up" :movement="-0.5"
-        @click="$emit('increment')" />
+        @click="$emit('increment'); animation()" />
 </div>
 </template>
 
@@ -128,6 +138,10 @@ export default {
             left: 1rem;
         }
     }
-
 }
 </style>
+
+<!-- // this.$refs.fade.classList.add('animate__animated', 'animate__shakeY')
+// setTimeout(() => {
+//     this.$refs.fade.classList.remove('animate__animated', 'animate__shakeY')
+// }, 300) -->

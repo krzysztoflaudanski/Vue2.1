@@ -13,20 +13,23 @@
   <button-item @click="$emit('refresh')" :size="4" :font-size="1.5" icon="pi-refresh" />
   <button-item @click="showModal" :size="4" :font-size="1.5" :style="{ marginLeft: '20px' }" :movement="-0.5">
     ?</button-item>
-  <router-link :to="{ path:linkShared  }"> 
+  <router-link :to="{ path: linkShared }">
     <button-item :size="4" :font-size="1.5" icon="pi-share-alt" :style="{ marginLeft: '20px' }" />
   </router-link>
-  <modal-item v-if="modalVisible" @cancel="hideModal">
-    <!-- Content of the modal -->
-    <template v-slot:header>
-      <h3>About the app</h3>
-    </template>
-    <template v-slot:body>
-      <p>Mix three colors to create the perfect one!</p>
-    </template>
-    <template v-slot:footer>
-      <button-item icon="pi-thumbs-up-fill" :movement="0" />
-    </template></modal-item>
+  <fade-animation>
+    <modal-item v-if="modalVisible" @cancel="hideModal">
+      <!-- Content of the modal -->
+      <template v-slot:header>
+        <h3>About the app</h3>
+      </template>
+      <template v-slot:body>
+        <p>Mix three colors to create the perfect one!</p>
+      </template>
+      <template v-slot:footer>
+        <button-item icon="pi-thumbs-up-fill" :movement="0" />
+      </template>
+    </modal-item>
+  </fade-animation>
 </div>
 </template>
 
@@ -34,6 +37,7 @@
 import FlaskItem from './shared/FlaskItem.vue';
 import ButtonItem from './shared/ButtonItem.vue';
 import ModalItem from './shared/ModalItem.vue';
+import FadeAnimation from './shared/FadeAnimation.vue'
 import modalMixin from './../mixins/ModalMixin.js'
 
 export default {
@@ -59,12 +63,15 @@ export default {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
       return `/color/${redCol}/${greenCol}/${blueCol}`
     }
-    },
+  },
   components: {
     ButtonItem,
     FlaskItem,
-    ModalItem
+    ModalItem,
+    FadeAnimation
 
   },
 }
 </script>
+
+<style></style>

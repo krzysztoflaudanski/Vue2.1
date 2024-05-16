@@ -16,16 +16,27 @@
       </Menubar>
 
       <!-- router view -->
-      <router-view />
 
+      <!-- <router-view v-slot="{ Component }">
+        <transition>
+          <slide-fade-animation :is="Component" />
+        </transition>
+      </router-view> -->
+
+      <SlideFadeAnimation class="animate__faster">
+        <router-view></router-view>
+      </SlideFadeAnimation>
   </div>
 </div>
 </template>
 
 <script>
+import SlideFadeAnimation from './components/shared/SlideFadeAnimation.vue';
 import './styles/global.scss'
 import AppHeader from './components/AppHeader'
 import Menubar from 'primevue/menubar';
+import { RouterView } from 'vue-router';
+import router from './router';
 
 export default {
   name: 'App',
@@ -55,7 +66,8 @@ export default {
   },
   components: {
     AppHeader,
-    Menubar
+    Menubar,
+    SlideFadeAnimation
   }
 }
 </script>
