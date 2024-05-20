@@ -66,6 +66,11 @@ export default {
           icon: 'pi pi-fw pi-info',
           to: "/About"
           // command: () => { this.$router.push('/about') }
+        },
+        {
+          label: 'My colors',
+          icon: 'pi pi-fw pi-palette',
+          to: "/my-colors"
         }
       ]
     }
