@@ -4,7 +4,7 @@
 
     <!-- header -->
     <app-header />
-    < <Menubar :model="items" class="menuBar">
+     <Menubar :model="items" class="menuBar">
       <template #item="{ item, props }">
         <router-link v-slot="{ href, navigate }" :to="item.to" custom>
           <a v-ripple :href="href" v-bind="props.action" @click="navigate">
@@ -23,9 +23,15 @@
         </transition>
       </router-view> -->
 
-      <SlideFadeAnimation class="animate__faster">
+      <router-view v-slot="{ Component }">
+        <SlideFadeAnimation class="animate__faster">
+          <component :is="Component" />
+        </SlideFadeAnimation>
+      </router-view>
+
+      <!-- <SlideFadeAnimation class="animate__faster">
         <router-view></router-view>
-      </SlideFadeAnimation>
+      </SlideFadeAnimation> -->
   </div>
 </div>
 </template>

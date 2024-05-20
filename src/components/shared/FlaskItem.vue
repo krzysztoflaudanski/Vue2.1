@@ -97,18 +97,18 @@ export default {
         transition: .2s;
 
         &--red {
-            background-color: #ff7d3b;
-            background-image: linear-gradient(189deg, #ff7d3b 0%, #FF2525 74%);
+            background-color: $colorThree;
+            background-image: linear-gradient(189deg, $colorThree 0%, #FF2525 74%);
         }
 
         &--green {
-            background-color: #2e561c;
-            background-image: linear-gradient(0deg, #2e561c 0%, #2AF598 100%);
+            background-color: $colorFour;
+            background-image: linear-gradient(0deg, $colorFour 0%, #2AF598 100%);
         }
 
         &--blue {
-            background-color: #25b6bf;
-            background-image: linear-gradient(183deg, #25b6bf 0%, #0070a2 100%);
+            background-color: $colorFive;
+            background-image: linear-gradient(183deg, $colorFive 0%, $colorSix 100%);
         }
 
     }
@@ -120,8 +120,8 @@ export default {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: #9a9a9a;
-        background-image: linear-gradient(0deg, #9a9a9a 0%, #e8fdff 100%);
+        background-color: $colorOne;
+        background-image: linear-gradient(0deg, $colorOne 0%, $colorSeven 100%);
         opacity: 0.2;
     }
 
