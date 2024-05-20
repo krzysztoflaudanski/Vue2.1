@@ -1,13 +1,15 @@
 <template>
-<div class="page">
-    <page-title>Color</page-title>
+<div v-bind="$attrs" :class="$attrs.class">
+    <div class="page" v-bind="$attrs" :class="$attrs.class">
+        <page-title>Color</page-title>
+    </div>
+    <p v-show="areNumbers"> You've pick great color!</p>
+    <Message severity="error" v-show="!areNumbers">Color doesn't exist</Message>
+    <flask-item v-if="areColorsValid" :buttonsVisible="false" :amount="100" :size="15" :color="color"
+        :style="{ margin: '3rem auto' }"></flask-item>
+    <i class="pi pi-share-alt"></i>
+    <InputText type="text" v-model="colorURL" :style="{ marginLeft: '20px', width: '400px' }" />
 </div>
-<p v-show="areNumbers"> You've pick great color!</p>
-<Message severity="error" v-show="!areNumbers">Color doesn't exist</Message>
-<flask-item v-if="areColorsValid" :buttonsVisible="false" :amount="100" :size="15" :color="color"
-    :style="{ margin: '3rem auto' }"></flask-item>
-<i class="pi pi-share-alt"></i>
-<InputText type="text" v-model="colorURL" :style="{ marginLeft: '20px', width: '400px' }" />
 </template>
 
 <script>
@@ -18,6 +20,7 @@ import Message from 'primevue/message';
 
 export default {
     name: 'ColorPage',
+    inheritAttrs: false,
     data() {
         return {
             colorURL: '',
