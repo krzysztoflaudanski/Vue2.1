@@ -1,3 +1,22 @@
+<template>
+<div class="flask animate__animated" :class="isAnimated && 'animate__shakeY'" :style="flaskStyle"
+    @animationend="isAnimated = false">
+    <!-- decrement btn -->
+    <button-item v-if="buttonsVisible" class="flask__btn flask__btn--left" icon="pi-arrow-down"
+        @click="$emit('decrement'); animation()" />
+
+    <button-item v-if="buttonTrash" class="flask__btn flask__btn--middel" icon="pi-trash"
+        @click="$emit('removeColor');" />
+
+    <div :class="fillClasses" :style="fillStyle" />
+
+    <!-- increment btn -->
+    <button-item v-if="buttonsVisible" class="flask__btn flask__btn--right" icon="pi-arrow-up" :movement="-0.5"
+        @click="$emit('increment'); animation()" />
+</div>
+</template>
+
+
 <script>
 import ButtonItem from './ButtonItem.vue';
 export default {
@@ -25,7 +44,12 @@ export default {
         buttonsVisible: {
             type: Boolean,
             default: true
+        },
+        buttonTrash: {
+            type: Boolean,
+            default: false
         }
+
     },
     computed: {
         flaskStyle() {
@@ -58,26 +82,10 @@ export default {
     methods: {
         animation() {
             this.isAnimated = true
-
         }
     }
 }
 </script>
-
-<template>
-<div class="flask animate__animated" :class="isAnimated && 'animate__shakeY'" :style="flaskStyle"
-    @animationend="isAnimated = false">
-    <!-- decrement btn -->
-    <button-item v-if="buttonsVisible" class="flask__btn flask__btn--left" icon="pi-arrow-down"
-        @click="$emit('decrement'); animation()" />
-
-    <div :class="fillClasses" :style="fillStyle" />
-
-    <!-- increment btn -->
-    <button-item v-if="buttonsVisible" class="flask__btn flask__btn--right" icon="pi-arrow-up" :movement="-0.5"
-        @click="$emit('increment'); animation()" />
-</div>
-</template>
 
 <style lang="scss">
 .flask {
@@ -110,7 +118,6 @@ export default {
             background-color: $colorFive;
             background-image: linear-gradient(183deg, $colorFive 0%, $colorSix 100%);
         }
-
     }
 
     &::before {
@@ -136,6 +143,11 @@ export default {
 
         &--left {
             left: 1rem;
+        }
+
+        &--middel {
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     }
 }

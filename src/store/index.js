@@ -10,6 +10,9 @@ export default createStore({
     mutations: {
         ADD_COLOR(state, color) {
             state.colors.push(color)
+        },
+        REMOVE_COLOR(state, index) {
+            state.colors.splice(index, 1);
         }
     }
 })
