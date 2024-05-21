@@ -1,20 +1,19 @@
 <template>
 <div class="page">
     <ul class="mixtures">
-        <flask-item :key="index" v-for="(color, index) in $store.state.colors" :buttonsVisible=false :amount=100
-            :size="10" :color="formatColor(color)" :buttonTrash="true" @removeColor="deleteColor(index)" />
+        <flask-item :key="index" v-for="(color, index) in colors" :buttonsVisible=false :amount=100
+            :size="10" :color="color" :buttonTrash="true" @removeColor="deleteColor(index)" />
     </ul>
 </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import FlaskItem from './shared/FlaskItem.vue';
-import { mapMutations } from 'vuex';
+import { mapMutations, mapGetters } from 'vuex';
 
 export default {
     name: 'MyColorsList',
-    computed: mapState(['colors']),
+    computed: mapGetters({ colors: 'RGBColors' }),
     components: {
         FlaskItem,
     },

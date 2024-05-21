@@ -9,7 +9,7 @@
   <flask-item :buttonsVisible=false :amount=100 :size="15" :color="mixtureEffectFill"
     :style="{ margin: '3rem auto' }" />
   <p>{{ mixtureEffectFill }}</p>
-  <p>There are {{ $store.state.colors.length }} colors in your pocket!</p>
+  <p>There are {{ amount }} colors in your pocket!</p>
   <!-- refresh btn -->
   <div style="display: flex; align-items: center; justify-content: center;">
     <div>
@@ -52,8 +52,7 @@ import ButtonItem from './shared/ButtonItem.vue';
 import ModalItem from './shared/ModalItem.vue';
 import FadeAnimation from './shared/FadeAnimation.vue';
 import modalMixin from './../mixins/ModalMixin.js';
-import { mapState } from 'vuex';
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'ResultsBox',
@@ -70,7 +69,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['colors']),
+    ...mapGetters({ amount: 'ColorsAmount' }),
     mixtureEffectFill() {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
       return `rgb(${redCol}, ${greenCol}, ${blueCol})`
@@ -89,10 +88,10 @@ export default {
   },
   methods: {
     saveColor() {
-      const [red, green, blue] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
-      this.addColor({ red, green, blue })
+      this.addColor(this.mixtures)
     },
-    ...mapMutations({ addColor: 'ADD_COLOR' }),
+    //...mapMutations({ addColor: 'ADD_COLOR' }),
+    ...mapActions(['addColor']),
   }
 }
 </script>

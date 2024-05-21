@@ -7,6 +7,14 @@ export default createStore({
             { red: 20, green: 120, blue: 90 }
         ]
     },
+    getters: {
+        RGBColors(state) {
+            return state.colors.map(color => `rgb(${color.red}, ${color.green}, ${color.blue})`)
+        },
+        ColorsAmount(state) {
+            return state.colors.length
+        }
+    },
     mutations: {
         ADD_COLOR(state, color) {
             state.colors.push(color)
@@ -14,5 +22,13 @@ export default createStore({
         REMOVE_COLOR(state, index) {
             state.colors.splice(index, 1);
         }
-    }
+    },
+    actions: {
+        addColor ({ commit }, colors) {
+          if (colors.length === 3) {
+            const [red, green, blue] = colors.map(item => Math.floor(item.amount * 2.5))
+            commit('ADD_COLOR', { red, green, blue })
+          }
+        }
+      },
 })
