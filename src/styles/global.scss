@@ -19,3 +19,11 @@ p {
   color: $colorOne;
   padding: 0 1rem;
 }
+
+.mixtures {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0;
+}
