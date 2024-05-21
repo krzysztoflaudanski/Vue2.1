@@ -13,39 +13,49 @@
 <script>
 import MixturesList from './MixturesList'
 import ResultBox from './ResultBox'
+import { mapMutations, mapState } from 'vuex';
 
 export default {
   name: 'ColorMixin',
   data: () => ({
-    mixtures: [
-      {
-        variant: 'red',
-        amount: 20
-      },
-      {
-        variant: 'green',
-        amount: 70
-      },
-      {
-        variant: 'blue',
-        amount: 40
-      }]
+    // mixtures: [
+    //   {
+    //     variant: 'red',
+    //     amount: 20
+    //   },
+    //   {
+    //     variant: 'green',
+    //     amount: 70
+    //   },
+    //   {
+    //     variant: 'blue',
+    //     amount: 40
+    //   }]
   }),
+  computed: {
+    ...mapState(['mixtures'])
+  },
   methods: {
+    ...mapMutations({ setMixtureAmount: 'SET_MIX', resetMixtures: 'RESET_MIX' }),
     increment(index) {
       const mixture = this.mixtures[index]
       if (mixture.amount === 100) return false
-      mixture.amount++
+      this.setMixtureAmount({ index, amount: mixture.amount + 1 })
     },
 
     decrement(index) {
       const mixture = this.mixtures[index]
       if (mixture.amount === 0) return false
-      mixture.amount--
+      this.setMixtureAmount({ index, amount: mixture.amount - 1 })
     },
 
     refresh() {
-      this.mixtures = this.mixtures.map(item => ({ ...item, amount: 50 }))
+      const newAmounts = {
+        red: 20,
+        green: 70,
+        blue: 40
+      };
+      this.resetMixtures(newAmounts);
     }
   },
   components: {

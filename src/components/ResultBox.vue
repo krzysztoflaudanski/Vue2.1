@@ -52,7 +52,7 @@ import ButtonItem from './shared/ButtonItem.vue';
 import ModalItem from './shared/ModalItem.vue';
 import FadeAnimation from './shared/FadeAnimation.vue';
 import modalMixin from './../mixins/ModalMixin.js';
-import { mapMutations, mapGetters, mapActions } from 'vuex'
+import { mapMutations, mapGetters, mapActions, mapState } from 'vuex'
 
 export default {
   name: 'ResultsBox',
@@ -62,13 +62,14 @@ export default {
     };
   },
   mixins: [modalMixin],
-  props: {
-    mixtures: {
-      type: Array,
-      required: true
-    }
-  },
+  // props: {
+  //   mixtures: {
+  //     type: Array,
+  //     required: true
+  //   }
+  // },
   computed: {
+    ...mapState(['mixtures']),
     ...mapGetters({ amount: 'ColorsAmount' }),
     mixtureEffectFill() {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
